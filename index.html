@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CAA ICT & Technology Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="login">
+        <img src="./assests/Logo.png" width="140" style="margin-bottom:20px;">
+        <h2>CAA ICT & Technology Hub</h2>
+        <input type="email" id="email" placeholder="Class Email">
+        <input type="password" id="password" placeholder="Password">
+        <button id="loginBtn">Login</button>
+        <p id="error"></p>
+    </div>
+
+    <div id="dashboard" style="display:none;">
+        <div class="layout">
+
+            <aside class="sidebar">
+
+                <!-- TOP SECTION -->
+                <div class="sidebar-top">
+                    <img src="./assests/Logo.png" width="80">
+                    <h3 id="welcomeText"></h3>
+                </div>
+
+                <!-- DYNAMIC MENU (Changes ICT / Technology) -->
+                <nav id="menu" class="menu-dynamic"></nav>
+
+                <!-- Divider -->
+                <div class="menu-divider"></div>
+
+                <!-- SECONDARY MENU -->
+                <div class="menu-secondary">
+                    <button data-section="units">
+                        <i data-lucide="book-open"></i>
+                        Units
+                    </button>
+
+                    <button data-section="assignments">
+                        <i data-lucide="clipboard-list"></i>
+                        Assignments
+                    </button>
+
+                    <button data-section="progress">
+                        <i data-lucide="bar-chart"></i>
+                        Progress
+                    </button>
+                </div>
+
+                <!-- LOGOUT -->
+                <button id="logoutBtn" class="logout-btn">Logout</button>
+
+            </aside>
+
+            <main class="main-content">
+                <h2 id="sectionTitle"></h2>
+                <div id="contentArea"></div>
+            </main>
+
+        </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+
+</body>
+
+</html>

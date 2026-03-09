@@ -1,0 +1,303 @@
+/* styles.css */
+
+:root {
+    --caa-blue: #0d2c54;
+    --caa-red: #c4161c;
+    --caa-light: #f4f4f4;
+    --caa-dark: #0a0f1c;
+    --caa-gray: #1c2333;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: radial-gradient(circle at top left, #0d2c54 0%, #0a0f1c 40%, #070b14 100%);
+    color: white;
+}
+
+#login,
+#dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: white;
+    letter-spacing: 1px;
+}
+
+input {
+    padding: 12px;
+    margin: 8px;
+    width: 250px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--caa-gray);
+    color: white;
+}
+
+input:focus {
+    outline: 2px solid var(--caa-blue);
+}
+
+button {
+    padding: 12px 20px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--caa-blue);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: var(--caa-red);
+}
+
+#dashboard {
+    padding: 40px;
+    text-align: center;
+}
+
+#content {
+    margin-top: 30px;
+    background-color: var(--caa-gray);
+    padding: 20px;
+    border-radius: 12px;
+    width: 60%;
+}
+
+/* DASHBOARD LAYOUT */
+
+.dashboard-container {
+    width: 85%;
+    max-width: 1200px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.card {
+    background: linear-gradient(145deg, #1c2333, #121826);
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    transition: 0.3s ease;
+    border-left: 6px solid var(--caa-blue);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-left: 6px solid var(--caa-red);
+}
+
+.card h3 {
+    margin-top: 0;
+    color: white;
+}
+
+.card p {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.card button {
+    margin-top: 15px;
+    width: 100%;
+}
+
+/* MODAL */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: linear-gradient(145deg, #1c2333, #121826);
+    padding: 30px;
+    border-radius: 18px;
+    width: 60%;
+    max-width: 700px;
+    color: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-content h2 {
+    color: white;
+}
+
+#closeModal {
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--caa-red);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.modal-content a {
+    color: var(--caa-blue);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.modal-content a:hover {
+    color: var(--caa-red);
+}
+
+/* LAYOUT FIX */
+
+.layout {
+    display: flex;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: var(--caa-dark);
+}
+
+/* SIDEBAR */
+
+.menu-dynamic,
+.menu-secondary {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sidebar {
+    width: 250px;
+    background: linear-gradient(180deg, #0d2c54, #091a33);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 8px 0 25px rgba(0, 0, 0, 0.6);
+    justify-content: space-between;
+}
+
+.sidebar::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 20px;
+    bottom: 20px;
+    width: 4px;
+    background: linear-gradient(to bottom, var(--caa-blue), var(--caa-red));
+    border-radius: 4px;
+}
+
+.sidebar-top {
+    padding: 20px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.sidebar nav {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 20px;
+}
+
+.sidebar nav button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 12px;
+    transition: all 0.25s ease;
+}
+
+.sidebar nav button:hover {
+    transform: translateX(4px);
+    background-color: var(--caa-red);
+}
+
+.sidebar nav button.active {
+    background-color: white;
+    color: var(--caa-blue);
+    font-weight: bold;
+    transform: translateX(4px);
+}
+
+/* Logout siempre abajo */
+.logout-btn {
+    background: linear-gradient(135deg, #c1121f, #e5383b);
+    border-radius: 14px;
+    margin: 10px 15px 15px 15px;
+    transition: 0.3s ease;
+}
+
+.logout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(229, 56, 59, 0.4);
+}
+
+/* MAIN CONTENT */
+
+.main-content {
+    flex: 1;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    margin: 20px;
+    box-shadow: 0 0 30px rgba(13, 44, 84, 0.2),
+        0 15px 40px rgba(0, 0, 0, 0.6);
+}
+
+#contentArea {
+    margin-top: 20px;
+}
+
+/* SECTION */
+
+.section {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.section.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* MENU DIVIDER */
+
+.menu-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 20px 15px;
+}
