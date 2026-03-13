@@ -1,30 +1,34 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 
 <head>
     <title>CAA ICT & Technology Hub</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 </head>
 
 <body>
     <div id="login">
-        <img src="./assests/Logo.png" width="140" style="margin-bottom:20px;">
-        <h2>CAA ICT & Technology Hub</h2>
-        <input type="email" id="email" placeholder="Class Email">
-        <input type="password" id="password" placeholder="Password">
-        <button id="loginBtn">Login</button>
-        <p id="error"></p>
+        <div class="login-box">
+            <img src="./assests/Logo.png" width="120" />
+
+            <h1>CAA ICT & Technology Hub</h1>
+
+            <input id="email" placeholder="Class Email" />
+            <input id="password" type="password" placeholder="Password" />
+
+            <button id="loginBtn">Login</button>
+            <!-- MENSAJE DE ERROR -->
+            <p id="error"></p>
+        </div>
     </div>
 
-    <div id="dashboard" style="display:none;">
+    <div id="dashboard" style="display: none">
         <div class="layout">
-
             <aside class="sidebar">
-
                 <!-- TOP SECTION -->
                 <div class="sidebar-top">
-                    <img src="./assests/Logo.png" width="80">
+                    <img src="./assests/Logo.png" width="80" />
                     <h3 id="welcomeText"></h3>
                 </div>
 
@@ -54,14 +58,12 @@
 
                 <!-- LOGOUT -->
                 <button id="logoutBtn" class="logout-btn">Logout</button>
-
             </aside>
 
             <main class="main-content">
                 <h2 id="sectionTitle"></h2>
                 <div id="contentArea"></div>
             </main>
-
         </div>
     </div>
 
@@ -79,7 +81,6 @@
     <script>
         lucide.createIcons();
     </script>
-
 </body>
 
 </html>

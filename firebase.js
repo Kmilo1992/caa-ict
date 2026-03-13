@@ -5,10 +5,11 @@ import {
   signInWithEmailAndPassword, 
   signOut,
   setPersistence, 
-  browserSessionPersistence 
+  onAuthStateChanged,
+  browserSessionPersistence
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-// TU CONFIG AQUÍ 👇
+// TU CONFIG
 const firebaseConfig = {
   apiKey: "AIzaSyBvq0Ls_HK5UufyflFfSuKa_ssytbKCG40",
   authDomain: "caa-ict.firebaseapp.com",
@@ -22,7 +23,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// ⚡ IMPORTANTE: que NO recuerde sesión
+// ⚡ sesión solo mientras la página esté abierta
 setPersistence(auth, browserSessionPersistence);
 
-export { auth, signInWithEmailAndPassword, signOut };
+export { auth, signInWithEmailAndPassword, signOut, onAuthStateChanged };
