@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ICT Self-Assessment</title>
+
+<style>
+
+:root{
+  --caa-dark:#0f172a;
+  --caa-card:#1e293b;
+  --caa-accent:#3b82f6;
+  --caa-text:#e2e8f0;
+}
+
+/* GENERAL */
+body{
+  font-family: Arial, sans-serif;
+  background-color: var(--caa-dark);
+  color: var(--caa-text);
+  margin:0;
+  padding:40px;
+  display:flex;
+  justify-content:center;
+}
+
+/* CONTAINER */
+.container{
+  width:100%;
+  max-width:700px;
+  background-color: var(--caa-card);
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* TITLE */
+h1{
+  text-align:center;
+  margin-bottom:10px;
+}
+
+p{
+  text-align:center;
+  opacity:0.8;
+}
+
+/* QUESTIONS */
+.question{
+  margin:20px 0;
+}
+
+.question p{
+  text-align:left;
+  font-weight:bold;
+}
+
+/* INPUT */
+input[type="text"]{
+  width:100%;
+  padding:10px;
+  border-radius:10px;
+  border:none;
+  margin-top:5px;
+}
+
+/* RADIO */
+label{
+  display:block;
+  margin:5px 0;
+  cursor:pointer;
+}
+
+/* BUTTON */
+button{
+  width:100%;
+  padding:12px;
+  margin-top:20px;
+  border:none;
+  border-radius:12px;
+  background-color: var(--caa-accent);
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  transform:scale(1.03);
+}
+
+/* RESULT CARD */
+#result{
+  margin-top:30px;
+  padding:20px;
+  background-color:#020617;
+  border-radius:15px;
+  display:none;
+  animation:fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(10px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+.copy-btn{
+  margin-top:15px;
+  background:#22c55e;
+}
+
+.error{
+  color:#f87171;
+  text-align:center;
+  margin-top:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>ICT Self-Assessment</h1>
+<p>Reflect on your performance during this term</p>
+
+<form id="assessmentForm">
+
+<div class="question">
+<p>Student Name:</p>
+<input type="text" id="studentName" placeholder="Enter your name">
+</div>
+
+<div class="question">
+<p>1. I completed programming exercises and class activities.</p>
+<label><input type="radio" name="q1" value="3"> Always</label>
+<label><input type="radio" name="q1" value="2"> Sometimes</label>
+<label><input type="radio" name="q1" value="1"> Rarely</label>
+</div>
+
+<div class="question">
+<p>2. I tried to solve problems before asking for help.</p>
+<label><input type="radio" name="q2" value="3"> Always</label>
+<label><input type="radio" name="q2" value="2"> Sometimes</label>
+<label><input type="radio" name="q2" value="1"> Rarely</label>
+</div>
+
+<div class="question">
+<p>3. I stayed focused during class.</p>
+<label><input type="radio" name="q3" value="3"> Always</label>
+<label><input type="radio" name="q3" value="2"> Sometimes</label>
+<label><input type="radio" name="q3" value="1"> Rarely</label>
+</div>
+
+<div class="question">
+<p>4. I used digital tools effectively.</p>
+<label><input type="radio" name="q4" value="3"> Always</label>
+<label><input type="radio" name="q4" value="2"> Sometimes</label>
+<label><input type="radio" name="q4" value="1"> Rarely</label>
+</div>
+
+<div class="question">
+<p>5. I asked for help when needed.</p>
+<label><input type="radio" name="q5" value="3"> Always</label>
+<label><input type="radio" name="q5" value="2"> Sometimes</label>
+<label><input type="radio" name="q5" value="1"> Rarely</label>
+</div>
+
+<div class="question">
+<p>6. I completed assignments responsibly.</p>
+<label><input type="radio" name="q6" value="3"> Always</label>
+<label><input type="radio" name="q6" value="2"> Sometimes</label>
+<label><input type="radio" name="q6" value="1"> Rarely</label>
+</div>
+
+<button type="button" onclick="calculateResult()">Generate Result</button>
+
+<div class="error" id="error"></div>
+
+</form>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+
+function calculateResult(){
+
+let name = document.getElementById("studentName").value;
+let error = document.getElementById("error");
+
+error.textContent = "";
+
+if(name.trim() === ""){
+error.textContent = "Please enter your name.";
+return;
+}
+
+let total = 0;
+
+for(let i=1;i<=6;i++){
+let q = document.querySelector('input[name="q'+i+'"]:checked');
+
+if(!q){
+error.textContent = "Please answer all questions.";
+return;
+}
+
+total += parseInt(q.value);
+}
+
+let message="";
+let phraseNumber="";
+
+if(total >= 16){
+phraseNumber = "1";
+message = "You have demonstrated excellent skills in utilizing digital tools and problem-solving. Continue exploring new technologies to elevate your projects.";
+}
+else if(total >= 10){
+phraseNumber = "2";
+message = "Your performance is adequate, but you should improve your problem-solving strategies and analyze solutions more deeply.";
+}
+else{
+phraseNumber = "3";
+message = "You need to practice consistently and seek support to strengthen your understanding of the concepts.";
+}
+
+const resultDiv = document.getElementById("result");
+
+resultDiv.style.display = "block";
+resultDiv.innerHTML = `
+<p><b>Student:</b> ${name}</p>
+<p><b>Phrase Number:</b> ${phraseNumber}</p>
+<p id="finalText">${message}</p>
+<button class="copy-btn" onclick="copyText()">Copy Phrase</button>
+`;
+
+}
+
+function copyText(){
+let text = document.getElementById("finalText").innerText;
+navigator.clipboard.writeText(text);
+alert("Phrase copied!");
+}
+
+</script>
+
+</body>
+</html>
