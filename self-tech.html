@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Technology Self-Assessment</title>
+
+<style>
+
+:root{
+  --caa-dark:#0f172a;
+  --caa-card:#1e293b;
+  --caa-accent:#22c55e;
+  --caa-text:#e2e8f0;
+}
+
+body{
+  font-family: Arial, sans-serif;
+  background-color: var(--caa-dark);
+  color: var(--caa-text);
+  margin:0;
+  padding:40px;
+  display:flex;
+  justify-content:center;
+}
+
+.container{
+  width:100%;
+  max-width:700px;
+  background-color: var(--caa-card);
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+h1{
+  text-align:center;
+}
+
+p{
+  text-align:center;
+  opacity:0.8;
+}
+
+.question{
+  margin:20px 0;
+}
+
+.question p{
+  text-align:left;
+  font-weight:bold;
+}
+
+input[type="text"]{
+  width:100%;
+  padding:10px;
+  border-radius:10px;
+  border:none;
+}
+
+label{
+  display:block;
+  margin:5px 0;
+  cursor:pointer;
+}
+
+button{
+  width:100%;
+  padding:12px;
+  margin-top:20px;
+  border:none;
+  border-radius:12px;
+  background-color: var(--caa-accent);
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+
+#result{
+  margin-top:30px;
+  padding:20px;
+  background-color:#020617;
+  border-radius:15px;
+  display:none;
+}
+
+.copy-btn{
+  margin-top:15px;
+  background:#3b82f6;
+}
+
+.error{
+  color:#f87171;
+  text-align:center;
+  margin-top:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Technology Self-Assessment</h1>
+<p>Reflect on your performance in your project and prototype development</p>
+
+<form id="assessmentForm">
+
+<div class="question">
+<p>Student Name:</p>
+<input type="text" id="studentName" placeholder="Enter your name">
+</div>
+
+<div class="question">
+<p>1. I actively participated in building and improving my prototype.</p>
+<label><input type="radio" name="q1" value="3"> Always</label>
+<label><input type="radio" name="q1" value="2"> Sometimes</label>
+<label><input type="radio" name="q1" value="1"> Rarely</label>
+</div>
+
+<div class="question">
+<p>2. I understood and used sensors and electronic components correctly.</p>
+<label><input type="radio" name="q2" value="3"> Always</label>
+<label><input type="radio" name="q2" value="2"> Sometimes</label>
+<label><input type="radio" name="q2" value="1"> Rarely</label>
+</div>
+
+<div class="question">
+<p>3. I followed the engineering design process (plan, build, test, improve).</p>
+<label><input type="radio" name="q3" value="3"> Always</label>
+<label><input type="radio" name="q3" value="2"> Sometimes</label>
+<label><input type="radio" name="q3" value="1"> Rarely</label>
+</div>
+
+<div class="question">
+<p>4. I worked on solving problems during the project development.</p>
+<label><input type="radio" name="q4" value="3"> Always</label>
+<label><input type="radio" name="q4" value="2"> Sometimes</label>
+<label><input type="radio" name="q4" value="1"> Rarely</label>
+</div>
+
+<div class="question">
+<p>5. I collaborated and contributed ideas to improve the project.</p>
+<label><input type="radio" name="q5" value="3"> Always</label>
+<label><input type="radio" name="q5" value="2"> Sometimes</label>
+<label><input type="radio" name="q5" value="1"> Rarely</label>
+</div>
+
+<div class="question">
+<p>6. I practiced and improved my project outside of class when needed.</p>
+<label><input type="radio" name="q6" value="3"> Always</label>
+<label><input type="radio" name="q6" value="2"> Sometimes</label>
+<label><input type="radio" name="q6" value="1"> Rarely</label>
+</div>
+
+<button type="button" onclick="calculateResult()">Generate Result</button>
+
+<div class="error" id="error"></div>
+
+</form>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+
+function calculateResult(){
+
+let name = document.getElementById("studentName").value;
+let error = document.getElementById("error");
+
+error.textContent = "";
+
+if(name.trim() === ""){
+error.textContent = "Please enter your name.";
+return;
+}
+
+let total = 0;
+
+for(let i=1;i<=6;i++){
+let q = document.querySelector('input[name="q'+i+'"]:checked');
+
+if(!q){
+error.textContent = "Please answer all questions.";
+return;
+}
+
+total += parseInt(q.value);
+}
+
+let message="";
+let phraseNumber="";
+
+if(total >= 16){
+phraseNumber = "4";
+message = "You have demonstrated excellent skills in building functional prototypes and in problem-solving. It is important to continue exploring new solutions and improving your skills to face more complex challenges.";
+}
+else if(total >= 10){
+phraseNumber = "5";
+message = "While your performance is adequate, you must focus on improving your problem-solving skills by applying more structured strategies and conducting thorough analyses of solutions.";
+}
+else{
+phraseNumber = "6";
+message = "You are facing challenges in building and programming the project. To improve, practice regularly with the project components. Also, ask your teacher for help to better understand and apply the concepts you’ve learned in class.";
+}
+
+const resultDiv = document.getElementById("result");
+
+resultDiv.style.display = "block";
+resultDiv.innerHTML = `
+<p><b>Student:</b> ${name}</p>
+<p><b>Phrase Number:</b> ${phraseNumber}</p>
+<p id="finalText">${message}</p>
+<button class="copy-btn" onclick="copyText()">Copy Phrase</button>
+`;
+
+}
+
+function copyText(){
+let text = document.getElementById("finalText").innerText;
+navigator.clipboard.writeText(text);
+alert("Phrase copied!");
+}
+
+</script>
+
+</body>
+</html>
