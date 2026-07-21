@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><title>Grade 11 ICT Self-Assessment</title>
+<style>
+:root{--caa-dark:#0f172a;--caa-card:#1e293b;--caa-accent:#3b82f6;--caa-text:#e2e8f0;}
+body{font-family:Arial;background:var(--caa-dark);color:var(--caa-text);margin:0;padding:40px;display:flex;justify-content:center}
+.container{max-width:750px;width:100%;background:var(--caa-card);padding:30px;border-radius:20px}
+.question{margin:18px 0} .question p{font-weight:bold} label{display:block;margin:4px 0}
+input[type=text]{width:100%;padding:10px;border-radius:8px;border:none}
+button{width:100%;padding:12px;background:var(--caa-accent);color:#fff;border:none;border-radius:10px;cursor:pointer}
+#result{display:none;margin-top:20px;padding:20px;background:#020617;border-radius:12px}.copy-btn{background:#22c55e;margin-top:10px}
+.error{color:#f87171}
+</style></head><body><div class="container"><h1>Grade 11 ICT Self-Assessment</h1><p>Reflect on your learning this term.</p>
+<form id="assessmentForm"><div class="question"><p>Student Name:</p><input id="studentName" type="text"></div>
+<script>
+const qs=[
+"I applied logical thinking to solve programming problems before asking for help.",
+"I understood how variables, conditions, and loops work in my programs.",
+"I analyzed errors and debugged my code instead of giving up.",
+"I designed programs that solved the proposed problem effectively.",
+"I understood the purpose of tables, primary keys, and relationships in a database.",
+"I created SQL queries to retrieve information from a database.",
+"I used SQL commands correctly to filter, sort, or organize data.",
+"I participated actively during programming and database activities.",
+"I completed programming and database assignments on time.",
+"I feel more confident solving real-world problems using programming and databases."
+];
+document.write(qs.map((t,i)=>`<div class='question'><p>${i+1}. ${t}</p>
+<label><input type='radio' name='q${i+1}' value='3'> Always</label>
+<label><input type='radio' name='q${i+1}' value='2'> Sometimes</label>
+<label><input type='radio' name='q${i+1}' value='1'> Rarely</label></div>`).join(""));
+</script>
+<button type="button" onclick="calculateResult()">Generate Result</button><div id="error" class="error"></div></form><div id="result"></div></div>
+<script>
+function calculateResult(){
+let n=studentName.value.trim(); error.textContent="";
+if(!n){error.textContent="Please enter your name.";return;}
+let total=0;
+for(let i=1;i<=10;i++){let q=document.querySelector(`input[name=q${i}]:checked`); if(!q){error.textContent="Please answer all questions.";return;} total+=+q.value;}
+let p,m,l;
+if(total>=26){p=1;l="Advanced";m="You have demonstrated excellent computational thinking and database skills. You confidently apply programming logic, develop SQL queries, and solve problems independently. Keep challenging yourself with more complex projects and continue building your technical expertise.";}
+else if(total>=18){p=2;l="Proficient";m="You have developed a solid understanding of programming and databases. Continue practicing logical thinking, debugging techniques, and SQL query writing to become more confident when solving increasingly complex problems.";}
+else{p=3;l="Developing";m="You need to strengthen your programming logic and database fundamentals through consistent practice. Focus on understanding algorithms, debugging your code, and writing SQL queries step by step. With dedication and persistence, your confidence and skills will improve.";}
+result.style.display="block";
+result.innerHTML=`<p><b>Student:</b> ${n}</p><p><b>Score:</b> ${total}/30</p><p><b>Performance Level:</b> ${l}</p><p><b>Phrase Number:</b> ${p}</p><p id='finalText'>${m}</p><button class='copy-btn' onclick='copyText()'>Copy Phrase</button>`;
+}
+function copyText(){navigator.clipboard.writeText(finalText.innerText);alert("Phrase copied!");}
+</script></body></html>
