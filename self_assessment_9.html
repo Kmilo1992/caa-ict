@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Grade 9 ICT Self-Assessment</title>
+<style>
+:root{--caa-dark:#0f172a;--caa-card:#1e293b;--caa-accent:#3b82f6;--caa-text:#e2e8f0}
+body{font-family:Arial,sans-serif;background:var(--caa-dark);color:var(--caa-text);margin:0;padding:40px;display:flex;justify-content:center}
+.container{width:100%;max-width:750px;background:var(--caa-card);padding:30px;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+h1{text-align:center;margin-bottom:10px}.header{text-align:center;opacity:.8;margin-bottom:25px}
+.question{margin:20px 0}.question p{text-align:left;font-weight:bold;line-height:1.4}
+input[type="text"]{width:100%;box-sizing:border-box;padding:10px;border-radius:10px;border:none;margin-top:5px}
+label{display:block;margin:6px 0;cursor:pointer}
+button{width:100%;padding:12px;margin-top:20px;border:none;border-radius:12px;background:var(--caa-accent);color:white;font-size:16px;cursor:pointer;transition:.3s}
+button:hover{transform:scale(1.03)}
+#result{margin-top:30px;padding:20px;background:#020617;border-radius:15px;display:none;animation:fadeIn .4s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.copy-btn{margin-top:15px;background:#22c55e}.error{color:#f87171;text-align:center;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Grade 9 ICT Self-Assessment</h1>
+<p class="header">Reflect on your learning and performance during this term.</p>
+<form id="assessmentForm">
+<div class="question"><p>Student Name:</p><input type="text" id="studentName" placeholder="Enter your name"></div>
+
+<div class="question"><p>1. I completed Excel activities and used formulas correctly to analyze data.</p>
+<label><input type="radio" name="q1" value="3"> Always</label><label><input type="radio" name="q1" value="2"> Sometimes</label><label><input type="radio" name="q1" value="1"> Rarely</label></div>
+
+<div class="question"><p>2. I understood how AVERAGEIF and COUNTIF can be used to answer questions about data.</p>
+<label><input type="radio" name="q2" value="3"> Always</label><label><input type="radio" name="q2" value="2"> Sometimes</label><label><input type="radio" name="q2" value="1"> Rarely</label></div>
+
+<div class="question"><p>3. I analyzed Excel results and used data to identify patterns or draw conclusions.</p>
+<label><input type="radio" name="q3" value="3"> Always</label><label><input type="radio" name="q3" value="2"> Sometimes</label><label><input type="radio" name="q3" value="1"> Rarely</label></div>
+
+<div class="question"><p>4. I checked my formulas and corrected errors when my Excel results were incorrect.</p>
+<label><input type="radio" name="q4" value="3"> Always</label><label><input type="radio" name="q4" value="2"> Sometimes</label><label><input type="radio" name="q4" value="1"> Rarely</label></div>
+
+<div class="question"><p>5. I understood the basic structure and purpose of the Arduino IDE.</p>
+<label><input type="radio" name="q5" value="3"> Always</label><label><input type="radio" name="q5" value="2"> Sometimes</label><label><input type="radio" name="q5" value="1"> Rarely</label></div>
+
+<div class="question"><p>6. I understood the basic syntax and structure of an Arduino program.</p>
+<label><input type="radio" name="q6" value="3"> Always</label><label><input type="radio" name="q6" value="2"> Sometimes</label><label><input type="radio" name="q6" value="1"> Rarely</label></div>
+
+<div class="question"><p>7. I was able to modify or write small Arduino code exercises following the examples studied in class.</p>
+<label><input type="radio" name="q7" value="3"> Always</label><label><input type="radio" name="q7" value="2"> Sometimes</label><label><input type="radio" name="q7" value="1"> Rarely</label></div>
+
+<div class="question"><p>8. I tried to understand and solve technical problems before asking for help.</p>
+<label><input type="radio" name="q8" value="3"> Always</label><label><input type="radio" name="q8" value="2"> Sometimes</label><label><input type="radio" name="q8" value="1"> Rarely</label></div>
+
+<div class="question"><p>9. I stayed focused and participated actively during Excel and Arduino activities.</p>
+<label><input type="radio" name="q9" value="3"> Always</label><label><input type="radio" name="q9" value="2"> Sometimes</label><label><input type="radio" name="q9" value="1"> Rarely</label></div>
+
+<div class="question"><p>10. I feel more confident using data analysis and basic programming to solve problems.</p>
+<label><input type="radio" name="q10" value="3"> Always</label><label><input type="radio" name="q10" value="2"> Sometimes</label><label><input type="radio" name="q10" value="1"> Rarely</label></div>
+
+<button type="button" onclick="calculateResult()">Generate Result</button>
+<div class="error" id="error"></div>
+</form>
+<div id="result"></div>
+</div>
+
+<script>
+function calculateResult(){
+let name=document.getElementById("studentName").value;
+let error=document.getElementById("error"); error.textContent="";
+if(name.trim()===""){error.textContent="Please enter your name.";return;}
+let total=0;
+for(let i=1;i<=10;i++){
+let q=document.querySelector('input[name="q'+i+'"]:checked');
+if(!q){error.textContent="Please answer all questions.";return;}
+total+=parseInt(q.value);
+}
+let message="",phraseNumber="",level="";
+if(total>=26){
+phraseNumber="1";level="Advanced";
+message="You have demonstrated excellent skills in data analysis and basic programming. You can apply Excel formulas, interpret data, and understand the structure and syntax of Arduino programs with confidence. Keep challenging yourself with more complex problems and creative technology projects.";
+}else if(total>=18){
+phraseNumber="2";level="Proficient";
+message="You have developed a solid understanding of Excel data analysis and Arduino programming fundamentals. Continue practicing formulas, interpreting results, and writing code to become more confident when solving problems independently.";
+}else{
+phraseNumber="3";level="Developing";
+message="You need to strengthen your understanding of data analysis and Arduino programming through consistent practice. Focus on using formulas correctly, interpreting data, and reviewing basic programming syntax step by step. With practice and persistence, your confidence will improve.";
+}
+let resultDiv=document.getElementById("result");
+resultDiv.style.display="block";
+resultDiv.innerHTML='<p><b>Student:</b> '+name+'</p><p><b>Score:</b> '+total+' / 30</p><p><b>Performance Level:</b> '+level+'</p><p><b>Phrase Number:</b> '+phraseNumber+'</p><p id="finalText">'+message+'</p><button class="copy-btn" onclick="copyText()">Copy Phrase</button>';
+}
+function copyText(){let text=document.getElementById("finalText").innerText;navigator.clipboard.writeText(text);alert("Phrase copied!");}
+</script>
+</body>
+</html>
