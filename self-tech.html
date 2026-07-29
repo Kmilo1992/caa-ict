@@ -119,38 +119,66 @@ button{
 </div>
 
 <div class="question">
-<p>2. I understood and used sensors and electronic components correctly.</p>
+<p>2. I assembled the electronic components correctly following the circuit design.</p>
 <label><input type="radio" name="q2" value="3"> Always</label>
 <label><input type="radio" name="q2" value="2"> Sometimes</label>
 <label><input type="radio" name="q2" value="1"> Rarely</label>
 </div>
 
 <div class="question">
-<p>3. I followed the engineering design process (plan, build, test, improve).</p>
+<p>3. I successfully integrated the Arduino board, sensors, and actuators into my project.</p>
 <label><input type="radio" name="q3" value="3"> Always</label>
 <label><input type="radio" name="q3" value="2"> Sometimes</label>
 <label><input type="radio" name="q3" value="1"> Rarely</label>
 </div>
 
 <div class="question">
-<p>4. I worked on solving problems during the project development.</p>
+<p>4. I understood how the temperature sensor and pulse sensor collect and send data.</p>
 <label><input type="radio" name="q4" value="3"> Always</label>
 <label><input type="radio" name="q4" value="2"> Sometimes</label>
 <label><input type="radio" name="q4" value="1"> Rarely</label>
 </div>
 
 <div class="question">
-<p>5. I collaborated and contributed ideas to improve the project.</p>
+<p>5. I understood the purpose of actuators such as LEDs, buzzers, or displays in the prototype.</p>
 <label><input type="radio" name="q5" value="3"> Always</label>
 <label><input type="radio" name="q5" value="2"> Sometimes</label>
 <label><input type="radio" name="q5" value="1"> Rarely</label>
 </div>
 
 <div class="question">
-<p>6. I practiced and improved my project outside of class when needed.</p>
+<p>6. I can explain the difference between analog and digital signals.</p>
 <label><input type="radio" name="q6" value="3"> Always</label>
 <label><input type="radio" name="q6" value="2"> Sometimes</label>
 <label><input type="radio" name="q6" value="1"> Rarely</label>
+</div>
+
+<div class="question">
+<p>7. I followed the Engineering Design Process to plan, build, test, and improve my prototype.</p>
+<label><input type="radio" name="q7" value="3"> Always</label>
+<label><input type="radio" name="q7" value="2"> Sometimes</label>
+<label><input type="radio" name="q7" value="1"> Rarely</label>
+</div>
+
+<div class="question">
+<p>8. I solved technical problems by testing different solutions before asking for help.</p>
+<label><input type="radio" name="q8" value="3"> Always</label>
+<label><input type="radio" name="q8" value="2"> Sometimes</label>
+<label><input type="radio" name="q8" value="1"> Rarely</label>
+</div>
+
+<div class="question">
+<p>9. I collaborated with my partner and contributed ideas to improve the project.</p>
+<label><input type="radio" name="q9" value="3"> Always</label>
+<label><input type="radio" name="q9" value="2"> Sometimes</label>
+<label><input type="radio" name="q9" value="1"> Rarely</label>
+</div>
+
+<div class="question">
+<p>10. I feel more confident building electronic prototypes and understanding how hardware and software work together.</p>
+<label><input type="radio" name="q10" value="3"> Always</label>
+<label><input type="radio" name="q10" value="2"> Sometimes</label>
+<label><input type="radio" name="q10" value="1"> Rarely</label>
 </div>
 
 <button type="button" onclick="calculateResult()">Generate Result</button>
@@ -179,7 +207,7 @@ return;
 
 let total = 0;
 
-for(let i=1;i<=6;i++){
+for(let i=1;i<=10;i++){
 let q = document.querySelector('input[name="q'+i+'"]:checked');
 
 if(!q){
@@ -193,17 +221,26 @@ total += parseInt(q.value);
 let message="";
 let phraseNumber="";
 
-if(total >= 16){
+if(total >= 26){
+
 phraseNumber = "4";
-message = "You have demonstrated excellent skills in building functional prototypes and in problem-solving. It is important to continue exploring new solutions and improving your skills to face more complex challenges.";
+
+message = "You have demonstrated excellent technical knowledge and practical skills throughout the project. You successfully assembled electronic components, integrated sensors and actuators, and applied the Engineering Design Process to develop a functional prototype. Continue exploring more advanced technologies and engineering challenges.";
+
 }
-else if(total >= 10){
+else if(total >= 18){
+
 phraseNumber = "5";
-message = "While your performance is adequate, you must focus on improving your problem-solving skills by applying more structured strategies and conducting thorough analyses of solutions.";
+
+message = "You have developed a solid understanding of electronics, sensors, and prototype development. Continue strengthening your practical skills by reviewing electronic concepts, improving your assembly techniques, and applying problem-solving strategies during project development.";
+
 }
 else{
+
 phraseNumber = "6";
-message = "You are facing challenges in building and programming the project. To improve, practice regularly with the project components. Also, ask your teacher for help to better understand and apply the concepts you’ve learned in class.";
+
+message = "You need to strengthen both your practical and theoretical understanding of electronics and prototype development. Focus on reviewing the function of sensors, actuators, analog and digital signals, and practice assembling and testing electronic circuits with confidence. With consistent effort, your skills will continue to improve.";
+
 }
 
 const resultDiv = document.getElementById("result");
