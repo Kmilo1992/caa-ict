@@ -5,550 +5,127 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ICT in Action - Video Project Planning</title>
 <style>
-  :root{
-    --navy:#12395b;
-    --blue:#dceefa;
-    --red:#ef4b4b;
-    --red-light:#fde2e2;
-    --yellow:#fff0c7;
-    --green:#e2f3e8;
-    --purple:#eee7fb;
-    --gray:#f5f7f9;
-    --line:#c8d6e3;
-    --text:#17324d;
-  }
-
-  *{box-sizing:border-box}
-  body{
-    margin:0;
-    font-family:Arial, Helvetica, sans-serif;
-    background:#eef3f7;
-    color:var(--text);
-  }
-
-  .page{
-    max-width:1100px;
-    margin:28px auto;
-    background:white;
-    box-shadow:0 4px 24px rgba(18,57,91,.12);
-  }
-
-  header{
-    padding:28px 34px 24px;
-    background:linear-gradient(135deg,var(--navy),#1c527c);
-    color:white;
-    position:relative;
-    overflow:hidden;
-  }
-  header:after{
-    content:"";
-    position:absolute;
-    right:-50px; top:-80px;
-    width:250px;height:250px;
-    border:30px solid rgba(255,255,255,.08);
-    border-radius:50%;
-  }
-  .kicker{
-    font-size:15px;
-    font-weight:700;
-    letter-spacing:2px;
-    text-transform:uppercase;
-    opacity:.9;
-  }
-  h1{
-    margin:6px 0 2px;
-    font-size:38px;
-    letter-spacing:.5px;
-  }
-  .subtitle{
-    font-size:17px;
-    opacity:.92;
-  }
-  .workflow{
-    margin-top:20px;
-    display:flex;
-    align-items:center;
-    gap:8px;
-    flex-wrap:wrap;
-    font-weight:700;
-    font-size:13px;
-  }
-  .workflow span{
-    background:white;
-    color:var(--navy);
-    padding:8px 11px;
-    border-radius:7px;
-  }
-  .workflow b{color:#fff;font-size:16px}
-
-  main{padding:24px 30px 30px}
-
-  .intro{
-    background:var(--blue);
-    border-left:6px solid var(--navy);
-    padding:14px 17px;
-    margin-bottom:22px;
-    border-radius:8px;
-    font-size:14px;
-    line-height:1.45;
-  }
-
-  .section{
-    border:1px solid var(--line);
-    border-radius:12px;
-    margin-bottom:18px;
-    overflow:hidden;
-    break-inside:avoid;
-  }
-  .section-title{
-    padding:12px 16px;
-    background:var(--gray);
-    display:flex;
-    align-items:center;
-    gap:10px;
-    font-weight:800;
-    font-size:17px;
-  }
-  .number{
-    width:32px;height:32px;
-    border-radius:50%;
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    color:white;
-    background:var(--red);
-    font-size:15px;
-    flex:none;
-  }
-  .section-body{padding:17px}
-
-  .grid2{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
-  }
-
-  label{
-    display:block;
-    font-size:12px;
-    font-weight:800;
-    text-transform:uppercase;
-    letter-spacing:.5px;
-    margin-bottom:6px;
-    color:#48647b;
-  }
-
-  input[type="text"], textarea, select{
-    width:100%;
-    border:1px solid #b9cad8;
-    border-radius:7px;
-    padding:10px 11px;
-    font:inherit;
-    font-size:14px;
-    color:var(--text);
-    background:#fff;
-  }
-  textarea{
-    min-height:74px;
-    resize:vertical;
-    line-height:1.4;
-  }
-  input:focus, textarea:focus{
-    outline:2px solid #9cc7e5;
-    border-color:#6aa5cf;
-  }
-
-  .prompt{
-    margin:0 0 7px;
-    font-size:14px;
-    font-weight:700;
-  }
-  .hint{
-    font-size:12px;
-    color:#647b8e;
-    margin:4px 0 9px;
-  }
-
-  .argument-box{
-    background:var(--red-light);
-    border:1px solid #f4bcbc;
-    border-radius:9px;
-    padding:13px;
-    margin-top:12px;
-  }
-  .evidence-box{
-    background:var(--green);
-    border:1px solid #b8dec6;
-    border-radius:9px;
-    padding:13px;
-    margin-top:12px;
-  }
-
-  .checks{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:8px;
-  }
-  .check{
-    border:1px solid var(--line);
-    background:#fff;
-    padding:9px 8px;
-    border-radius:8px;
-    font-size:13px;
-    cursor:pointer;
-  }
-  .check:hover{background:#f7fafc}
-  .check input{margin-right:7px}
-
-  table{
-    width:100%;
-    border-collapse:collapse;
-    font-size:13px;
-  }
-  th{
-    background:var(--navy);
-    color:white;
-    padding:9px;
-    text-align:left;
-  }
-  td{
-    border:1px solid var(--line);
-    padding:5px;
-    vertical-align:top;
-  }
-  td input, td textarea{
-    border:0;
-    border-radius:0;
-    padding:6px;
-    min-height:40px;
-  }
-  td textarea{min-height:45px}
-
-  .small-table th{font-size:12px}
-  .small-table td{height:48px}
-
-  .submission{
-    background:var(--navy);
-    color:white;
-    border-radius:12px;
-    padding:18px;
-    margin-top:20px;
-    break-inside:avoid;
-  }
-  .submission h2{margin:0 0 10px;font-size:20px}
-  .submission-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:8px 20px;
-  }
-  .submission label{
-    color:white;
-    text-transform:none;
-    font-size:13px;
-    letter-spacing:0;
-    font-weight:500;
-  }
-  .submission input{margin-right:7px}
-
-  .final-note{
-    margin-top:16px;
-    background:var(--red);
-    color:white;
-    text-align:center;
-    padding:13px;
-    border-radius:8px;
-    font-weight:800;
-    letter-spacing:.5px;
-  }
-
-  .actions{
-    max-width:1100px;
-    margin:0 auto 28px;
-    display:flex;
-    justify-content:center;
-    gap:12px;
-  }
-  button{
-    border:0;
-    border-radius:8px;
-    padding:13px 20px;
-    font-size:15px;
-    font-weight:800;
-    cursor:pointer;
-  }
-  .print-btn{background:var(--red);color:white}
-  .clear-btn{background:white;color:var(--navy);border:1px solid var(--line)}
-  button:hover{transform:translateY(-1px)}
-
-  .footer{
-    padding:12px 30px 22px;
-    font-size:11px;
-    color:#718596;
-    text-align:center;
-  }
-
-  @media(max-width:760px){
-    .page{margin:0}
-    .grid2,.submission-grid{grid-template-columns:1fr}
-    .checks{grid-template-columns:1fr 1fr}
-    main{padding:18px}
-    h1{font-size:30px}
-  }
-
-  @media print{
-    @page{size:A4 portrait;margin:10mm}
-    body{background:white}
-    .page{max-width:none;margin:0;box-shadow:none}
-    .actions{display:none}
-    header{padding:18px 22px}
-    h1{font-size:29px}
-    .subtitle{font-size:14px}
-    main{padding:16px 18px}
-    .section{margin-bottom:11px}
-    .section-title{padding:8px 12px;font-size:14px}
-    .number{width:25px;height:25px;font-size:12px}
-    .section-body{padding:10px}
-    .intro{padding:9px 12px;margin-bottom:12px;font-size:11px}
-    label{font-size:9px;margin-bottom:3px}
-    input[type="text"], textarea{font-size:10px;padding:5px}
-    textarea{min-height:48px}
-    .prompt{font-size:11px}
-    .hint{font-size:9px;margin:2px 0 5px}
-    .argument-box,.evidence-box{padding:8px;margin-top:7px}
-    .checks{grid-template-columns:repeat(4,1fr)}
-    .check{padding:5px;font-size:9px}
-    table{font-size:9px}
-    th{padding:5px}
-    td{padding:2px}
-    td input,td textarea{padding:3px;font-size:9px;min-height:28px}
-    .submission{padding:10px;margin-top:10px}
-    .submission h2{font-size:14px;margin-bottom:5px}
-    .submission label{font-size:9px}
-    .final-note{padding:8px;font-size:11px;margin-top:9px}
-    .footer{padding:6px;font-size:8px}
-  }
+:root{--navy:#12395b;--blue:#dceefa;--red:#ef4b4b;--red-light:#fde2e2;--yellow:#fff0c7;--green:#e2f3e8;--purple:#eee7fb;--gray:#f5f7f9;--line:#c8d6e3;--text:#17324d}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#eef3f7;color:var(--text)}
+.page{max-width:1100px;margin:28px auto;background:#fff;box-shadow:0 4px 24px rgba(18,57,91,.12)}
+header{padding:28px 34px 24px;background:linear-gradient(135deg,var(--navy),#1c527c);color:#fff;position:relative;overflow:hidden}
+header:after{content:"";position:absolute;right:-50px;top:-80px;width:250px;height:250px;border:30px solid rgba(255,255,255,.08);border-radius:50%}
+.kicker{font-size:15px;font-weight:700;letter-spacing:2px;text-transform:uppercase;opacity:.9}h1{margin:6px 0 2px;font-size:38px;letter-spacing:.5px}.subtitle{font-size:17px;opacity:.92}
+.workflow{margin-top:20px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-weight:700;font-size:13px}.workflow span{background:#fff;color:var(--navy);padding:8px 11px;border-radius:7px}.workflow b{color:#fff;font-size:16px}main{padding:24px 30px 30px}
+.intro{background:var(--blue);border-left:6px solid var(--navy);padding:14px 17px;margin-bottom:22px;border-radius:8px;font-size:14px;line-height:1.45}
+.section{border:1px solid var(--line);border-radius:12px;margin-bottom:18px;overflow:hidden;break-inside:avoid}.section-title{padding:12px 16px;background:var(--gray);display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px}.number{width:32px;height:32px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:#fff;background:var(--red);font-size:15px;flex:none}.section-body{padding:17px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+label{display:block;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;color:#48647b}input[type=text],textarea,select{width:100%;border:1px solid #b9cad8;border-radius:7px;padding:10px 11px;font:inherit;font-size:14px;color:var(--text);background:#fff}textarea{min-height:74px;resize:vertical;line-height:1.4}input:focus,textarea:focus{outline:2px solid #9cc7e5;border-color:#6aa5cf}.prompt{margin:0 0 7px;font-size:14px;font-weight:700}.hint{font-size:12px;color:#647b8e;margin:4px 0 9px}
+.argument-box{background:var(--red-light);border:1px solid #f4bcbc;border-radius:9px;padding:13px;margin-top:12px}.evidence-box{background:var(--green);border:1px solid #b8dec6;border-radius:9px;padding:13px;margin-top:12px}.checks{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.check{border:1px solid var(--line);background:#fff;padding:9px 8px;border-radius:8px;font-size:13px;cursor:pointer}.check:hover{background:#f7fafc}.check input{margin-right:7px}
+table{width:100%;border-collapse:collapse;font-size:13px}th{background:var(--navy);color:#fff;padding:9px;text-align:left}td{border:1px solid var(--line);padding:5px;vertical-align:top}td input,td textarea{border:0;border-radius:0;padding:6px;min-height:40px}td textarea{min-height:45px}.small-table th{font-size:12px}.small-table td{height:48px}
+.submission{background:var(--navy);color:#fff;border-radius:12px;padding:18px;margin-top:20px;break-inside:avoid}.submission h2{margin:0 0 10px;font-size:20px}.submission-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px}.submission label{color:#fff;text-transform:none;font-size:13px;letter-spacing:0;font-weight:500}.submission input{margin-right:7px}.final-note{margin-top:16px;background:var(--red);color:#fff;text-align:center;padding:13px;border-radius:8px;font-weight:800;letter-spacing:.5px}
+.actions{max-width:1100px;margin:0 auto 28px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap;padding:0 12px}button{border:0;border-radius:8px;padding:13px 20px;font-size:15px;font-weight:800;cursor:pointer}.print-btn{background:var(--red);color:#fff}.download-btn{background:var(--navy);color:#fff}.clear-btn{background:#fff;color:var(--navy);border:1px solid var(--line)}button:hover{transform:translateY(-1px)}.footer{padding:12px 30px 22px;font-size:11px;color:#718596;text-align:center}
+@media(max-width:760px){.page{margin:0}.grid2,.submission-grid{grid-template-columns:1fr}.checks{grid-template-columns:1fr 1fr}main{padding:18px}h1{font-size:30px}.section-body{overflow-x:auto}table{min-width:600px}}
+@media print{@page{size:A4 portrait;margin:10mm}body{background:#fff}.page{max-width:none;margin:0;box-shadow:none}.actions{display:none}header{padding:18px 22px}h1{font-size:29px}.subtitle{font-size:14px}main{padding:16px 18px}.section{margin-bottom:11px}.section-title{padding:8px 12px;font-size:14px}.number{width:25px;height:25px;font-size:12px}.section-body{padding:10px}.intro{padding:9px 12px;margin-bottom:12px;font-size:11px}label{font-size:9px;margin-bottom:3px}input[type=text],textarea{font-size:10px;padding:5px}textarea{min-height:48px}.prompt{font-size:11px}.hint{font-size:9px;margin:2px 0 5px}.argument-box,.evidence-box{padding:8px;margin-top:7px}.checks{grid-template-columns:repeat(4,1fr)}.check{padding:5px;font-size:9px}table{font-size:9px;min-width:0}th{padding:5px}td{padding:2px}td input,td textarea{padding:3px;font-size:9px;min-height:28px}.submission{padding:10px;margin-top:10px}.submission h2{font-size:14px;margin-bottom:5px}.submission label{font-size:9px}.final-note{padding:8px;font-size:11px;margin-top:9px}.footer{padding:6px;font-size:8px}}
 </style>
 </head>
-
 <body>
 <div class="page">
-<header>
-  <div class="kicker">Grade 11 ICT • Video Project</div>
-  <h1>ICT IN ACTION</h1>
-  <div class="subtitle">Planning &amp; Pre-Production Form</div>
-  <div class="workflow">
-    <span>PLAN</span><b>→</b>
-    <span>JUSTIFY</span><b>→</b>
-    <span>ORGANIZE</span><b>→</b>
-    <span>RECORD</span><b>→</b>
-    <span>EDIT</span>
-  </div>
-</header>
-
+<header><div class="kicker">Grade 11 ICT • Video Project</div><h1>ICT IN ACTION</h1><div class="subtitle">Planning &amp; Pre-Production Form</div><div class="workflow"><span>PLAN</span><b>→</b><span>JUSTIFY</span><b>→</b><span>ORGANIZE</span><b>→</b><span>RECORD</span><b>→</b><span>EDIT</span></div></header>
 <main>
-  <div class="intro">
-    <strong>Group instruction:</strong> Complete this form together. Discuss each decision before writing your answer.
-    Keep responses clear and specific. This form must be completed and submitted <strong>before recording.</strong>
-  </div>
-
-  <section class="section">
-    <div class="section-title"><span class="number">01</span> GROUP INFORMATION</div>
-    <div class="section-body">
-      <div class="grid2">
-        <div>
-          <label>Course / Grade</label>
-          <input type="text" placeholder="Example: 11A">
-        </div>
-        <div>
-          <label>Group Name</label>
-          <input type="text" placeholder="Group name">
-        </div>
-      </div>
-      <br>
-      <label>Group Members</label>
-      <textarea placeholder="Write the full names of all group members."></textarea>
-      <br>
-      <div class="grid2">
-        <div>
-          <label>Emphasis Subject</label>
-          <input type="text" placeholder="Subject / emphasis">
-        </div>
-        <div>
-          <label>Project / Product / Service</label>
-          <input type="text" placeholder="Name of your project">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-title"><span class="number">02</span> YOUR IDEA</div>
-    <div class="section-body">
-      <p class="prompt">What is the main idea of your video?</p>
-      <div class="hint">In 2–3 sentences, explain what your audience will see and understand.</div>
-      <textarea placeholder="Our video will present..."></textarea>
-      <br><br>
-      <p class="prompt">What is the main message you want to communicate?</p>
-      <textarea placeholder="Our video will show that... because..."></textarea>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-title"><span class="number">03</span> YOUR AUDIENCE</div>
-    <div class="section-body">
-      <div class="grid2">
-        <div>
-          <label>Who is your target audience?</label>
-          <input type="text" placeholder="Students, teachers, customers...">
-        </div>
-        <div>
-          <label>Why is this audience appropriate?</label>
-          <textarea placeholder="Our target audience is... because..."></textarea>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-title"><span class="number">04</span> ARGUMENT &amp; EVIDENCE</div>
-    <div class="section-body">
-      <div class="argument-box">
-        <p class="prompt">Why is your project worth showing?</p>
-        <div class="hint">Give two specific reasons. Use information or evidence from your project.</div>
-        <label>Reason 1</label>
-        <textarea placeholder="Our project is worth showing because..."></textarea>
-        <br>
-        <label>Reason 2</label>
-        <textarea placeholder="Another reason is..."></textarea>
-      </div>
-
-      <div class="evidence-box">
-        <p class="prompt">What will you show as evidence?</p>
-        <div class="checks">
-          <label class="check"><input type="checkbox"> Product / prototype</label>
-          <label class="check"><input type="checkbox"> Demonstration</label>
-          <label class="check"><input type="checkbox"> Process</label>
-          <label class="check"><input type="checkbox"> Results / data</label>
-          <label class="check"><input type="checkbox"> User experience</label>
-          <label class="check"><input type="checkbox"> Interview</label>
-          <label class="check"><input type="checkbox"> Screen recording</label>
-          <label class="check"><input type="checkbox"> Other</label>
-        </div>
-        <br>
-        <label>How will your evidence support your message?</label>
-        <textarea placeholder="This evidence will support our message by..."></textarea>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-title"><span class="number">05</span> VIDEO PLAN</div>
-    <div class="section-body">
-      <p class="prompt">Plan the main sequence of your video.</p>
-      <table>
-        <thead>
-          <tr>
-            <th style="width:12%">Scene</th>
-            <th style="width:29%">What will we show?</th>
-            <th style="width:29%">What will we say / hear?</th>
-            <th style="width:30%">Purpose of the scene</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td><strong>1 — Opening</strong></td><td><textarea placeholder="Visuals"></textarea></td><td><textarea placeholder="Voice / audio"></textarea></td><td><textarea placeholder="Why is this scene needed?"></textarea></td></tr>
-          <tr><td><strong>2 — Explain</strong></td><td><textarea placeholder="Visuals"></textarea></td><td><textarea placeholder="Voice / audio"></textarea></td><td><textarea placeholder="Purpose"></textarea></td></tr>
-          <tr><td><strong>3 — Show</strong></td><td><textarea placeholder="Visuals"></textarea></td><td><textarea placeholder="Voice / audio"></textarea></td><td><textarea placeholder="Purpose"></textarea></td></tr>
-          <tr><td><strong>4 — Conclude</strong></td><td><textarea placeholder="Visuals"></textarea></td><td><textarea placeholder="Voice / audio"></textarea></td><td><textarea placeholder="Purpose"></textarea></td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-title"><span class="number">06</span> PRODUCTION PLAN</div>
-    <div class="section-body">
-      <p class="prompt">What resources will your group need?</p>
-      <div class="checks">
-        <label class="check"><input type="checkbox"> Video recordings</label>
-        <label class="check"><input type="checkbox"> Photographs</label>
-        <label class="check"><input type="checkbox"> Interviews</label>
-        <label class="check"><input type="checkbox"> Screen recordings</label>
-        <label class="check"><input type="checkbox"> Graphics</label>
-        <label class="check"><input type="checkbox"> Voice-over</label>
-        <label class="check"><input type="checkbox"> Music / sound</label>
-        <label class="check"><input type="checkbox"> Text / subtitles</label>
-      </div>
-      <br>
-      <div class="grid2">
-        <div>
-          <label>Where will you record?</label>
-          <textarea placeholder="We will record in..."></textarea>
-        </div>
-        <div>
-          <label>Why is this location appropriate?</label>
-          <textarea placeholder="This location is appropriate because..."></textarea>
-        </div>
-      </div>
-      <br>
-      <label>How will you ensure good recording conditions?</label>
-      <textarea placeholder="Think about noise, lighting, space, privacy, and available equipment."></textarea>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-title"><span class="number">07</span> TEAMWORK &amp; RESPONSIBILITIES</div>
-    <div class="section-body">
-      <p class="prompt">Distribute the work so that everyone contributes.</p>
-      <table class="small-table">
-        <thead>
-          <tr><th style="width:25%">Team Member</th><th style="width:30%">Role</th><th>Main Responsibility</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><input type="text"></td><td><input type="text" placeholder="Example: Editor"></td><td><input type="text"></td></tr>
-          <tr><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
-          <tr><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
-          <tr><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
-          <tr><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>
-        </tbody>
-      </table>
-      <br>
-      <label>Why is this distribution appropriate for your group?</label>
-      <textarea placeholder="We decided to divide the responsibilities this way because..."></textarea>
-    </div>
-  </section>
-
-  <div class="submission">
-    <h2>SUBMIT YOUR PLAN — BEFORE YOU RECORD</h2>
-    <div class="submission-grid">
-      <label><input type="checkbox"> Clear project focus</label>
-      <label><input type="checkbox"> Main message</label>
-      <label><input type="checkbox"> Target audience</label>
-      <label><input type="checkbox"> Reasons and evidence</label>
-      <label><input type="checkbox"> Basic video structure</label>
-      <label><input type="checkbox"> Recording plan</label>
-      <label><input type="checkbox"> Team responsibilities</label>
-      <label><input type="checkbox"> Resources identified</label>
-    </div>
-    <div class="final-note">DO NOT START RECORDING UNTIL YOUR PLAN HAS BEEN SUBMITTED.</div>
-  </div>
-</main>
-
-<div class="footer">
-  ICT in Action • Video Project Planning • Complete as a group
+<div class="intro"><strong>Group instruction:</strong> Complete this form together. Discuss each decision before writing your answer. Keep responses clear and specific. This form must be completed and submitted <strong>before recording.</strong></div>
+<section class="section"><div class="section-title"><span class="number">01</span> GROUP INFORMATION</div><div class="section-body"><div class="grid2"><div><label>Course / Grade</label><input type="text" placeholder="Example: 11A"></div><div><label>Group Name</label><input type="text" placeholder="Group name"></div></div><br><label>Group Members</label><textarea placeholder="Write the full names of all group members."></textarea><br><div class="grid2"><div><label>Emphasis Subject</label><input type="text" placeholder="Subject / emphasis"></div><div><label>Project / Product / Service</label><input type="text" placeholder="Name of your project"></div></div></div></section>
+<section class="section"><div class="section-title"><span class="number">02</span> YOUR IDEA</div><div class="section-body"><p class="prompt">What is the main idea of your video?</p><div class="hint">In 2–3 sentences, explain what your audience will see and understand.</div><textarea placeholder="Our video will present..."></textarea><br><br><p class="prompt">What is the main message you want to communicate?</p><textarea placeholder="Our video will show that... because..."></textarea></div></section>
+<section class="section"><div class="section-title"><span class="number">03</span> YOUR AUDIENCE</div><div class="section-body"><div class="grid2"><div><label>Who is your target audience?</label><input type="text" placeholder="Students, teachers, customers..."></div><div><label>Why is this audience appropriate?</label><textarea placeholder="Our target audience is... because..."></textarea></div></div></div></section>
+<section class="section"><div class="section-title"><span class="number">04</span> ARGUMENT &amp; EVIDENCE</div><div class="section-body"><div class="argument-box"><p class="prompt">Why is your project worth showing?</p><div class="hint">Give two specific reasons. Use information or evidence from your project.</div><label>Reason 1</label><textarea placeholder="Our project is worth showing because..."></textarea><br><label>Reason 2</label><textarea placeholder="Another reason is..."></textarea></div><div class="evidence-box"><p class="prompt">What will you show as evidence?</p><div class="checks"><label class="check"><input type="checkbox"> Product / prototype</label><label class="check"><input type="checkbox"> Demonstration</label><label class="check"><input type="checkbox"> Process</label><label class="check"><input type="checkbox"> Results / data</label><label class="check"><input type="checkbox"> User experience</label><label class="check"><input type="checkbox"> Interview</label><label class="check"><input type="checkbox"> Screen recording</label><label class="check"><input type="checkbox"> Other</label></div><br><label>How will your evidence support your message?</label><textarea placeholder="This evidence will support our message by..."></textarea></div></div></section>
+<section class="section"><div class="section-title"><span class="number">05</span> VIDEO PLAN</div><div class="section-body"><p class="prompt">Plan the main sequence of your video.</p><table><thead><tr><th style="width:12%">Scene</th><th style="width:29%">What will we show?</th><th style="width:29%">What will we say / hear?</th><th style="width:30%">Purpose of the scene</th></tr></thead><tbody><tr><td><strong>1 — Opening</strong></td><td><textarea placeholder="Visuals"></textarea></td><td><textarea placeholder="Voice / audio"></textarea></td><td><textarea placeholder="Why is this scene needed?"></textarea></td></tr><tr><td><strong>2 — Explain</strong></td><td><textarea placeholder="Visuals"></textarea></td><td><textarea placeholder="Voice / audio"></textarea></td><td><textarea placeholder="Purpose"></textarea></td></tr><tr><td><strong>3 — Show</strong></td><td><textarea placeholder="Visuals"></textarea></td><td><textarea placeholder="Voice / audio"></textarea></td><td><textarea placeholder="Purpose"></textarea></td></tr><tr><td><strong>4 — Conclude</strong></td><td><textarea placeholder="Visuals"></textarea></td><td><textarea placeholder="Voice / audio"></textarea></td><td><textarea placeholder="Purpose"></textarea></td></tr></tbody></table></div></section>
+<section class="section"><div class="section-title"><span class="number">06</span> PRODUCTION PLAN</div><div class="section-body"><p class="prompt">What resources will your group need?</p><div class="checks"><label class="check"><input type="checkbox"> Video recordings</label><label class="check"><input type="checkbox"> Photographs</label><label class="check"><input type="checkbox"> Interviews</label><label class="check"><input type="checkbox"> Screen recordings</label><label class="check"><input type="checkbox"> Graphics</label><label class="check"><input type="checkbox"> Voice-over</label><label class="check"><input type="checkbox"> Music / sound</label><label class="check"><input type="checkbox"> Text / subtitles</label></div><br><div class="grid2"><div><label>Where will you record?</label><textarea placeholder="We will record in..."></textarea></div><div><label>Why is this location appropriate?</label><textarea placeholder="This location is appropriate because..."></textarea></div></div><br><label>How will you ensure good recording conditions?</label><textarea placeholder="Think about noise, lighting, space, privacy, and available equipment."></textarea></div></section>
+<section class="section"><div class="section-title"><span class="number">07</span> TEAMWORK &amp; RESPONSIBILITIES</div><div class="section-body"><p class="prompt">Distribute the work so that everyone contributes.</p><table class="small-table"><thead><tr><th style="width:25%">Team Member</th><th style="width:30%">Role</th><th>Main Responsibility</th></tr></thead><tbody><tr><td><input type="text"></td><td><input type="text" placeholder="Example: Editor"></td><td><input type="text"></td></tr><tr><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr><tr><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr><tr><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr><tr><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr></tbody></table><br><label>Why is this distribution appropriate for your group?</label><textarea placeholder="We decided to divide the responsibilities this way because..."></textarea></div></section>
+<div class="submission"><h2>SUBMIT YOUR PLAN — BEFORE YOU RECORD</h2><div class="submission-grid"><label><input type="checkbox"> Clear project focus</label><label><input type="checkbox"> Main message</label><label><input type="checkbox"> Target audience</label><label><input type="checkbox"> Reasons and evidence</label><label><input type="checkbox"> Basic video structure</label><label><input type="checkbox"> Recording plan</label><label><input type="checkbox"> Team responsibilities</label><label><input type="checkbox"> Resources identified</label></div><div class="final-note">DO NOT START RECORDING UNTIL YOUR PLAN HAS BEEN SUBMITTED.</div></div>
+</main><div class="footer">ICT in Action • Video Project Planning • Complete as a group</div>
 </div>
-</div>
-
-<div class="actions">
-  <button class="print-btn" onclick="window.print()">🖨 Print / Save as PDF</button>
-  <button class="clear-btn" onclick="clearForm()">Clear Form</button>
-</div>
-
+<div class="actions"><button class="download-btn" type="button" onclick="downloadCompletedForm()">💾 Download Completed Form (.html)</button><button class="print-btn" type="button" onclick="window.print()">🖨 Print / Save as PDF</button><button class="clear-btn" type="button" onclick="clearForm()">Clear Form</button></div>
 <script>
 function clearForm(){
   if(confirm("Clear all information entered in this form?")){
-    document.querySelectorAll("input[type=text], textarea").forEach(el => el.value = "");
-    document.querySelectorAll("input[type=checkbox]").forEach(el => el.checked = false);
+    document.querySelectorAll('input[type="text"], textarea').forEach(el=>el.value="");
+    document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(el=>el.checked=false);
+    document.querySelectorAll('select').forEach(el=>el.selectedIndex=0);
   }
+}
+
+async function downloadCompletedForm() {
+    const savedPage = document.documentElement.cloneNode(true);
+
+    const originalFields = document.querySelectorAll(
+        'input, textarea, select'
+    );
+    const savedFields = savedPage.querySelectorAll(
+        'input, textarea, select'
+    );
+
+    originalFields.forEach((field, index) => {
+        const savedField = savedFields[index];
+
+        if (field.tagName === 'TEXTAREA') {
+            savedField.textContent = field.value;
+        } else if (field.tagName === 'SELECT') {
+            Array.from(savedField.options).forEach((option, i) => {
+                if (field.options[i].selected) {
+                    option.setAttribute('selected', '');
+                } else {
+                    option.removeAttribute('selected');
+                }
+            });
+        } else if (
+            field.type === 'checkbox' ||
+            field.type === 'radio'
+        ) {
+            if (field.checked) {
+                savedField.setAttribute('checked', '');
+            } else {
+                savedField.removeAttribute('checked');
+            }
+        } else {
+            savedField.setAttribute('value', field.value);
+        }
+    });
+
+    const html = '<!DOCTYPE html>\n' + savedPage.outerHTML;
+    const blob = new Blob([html], {
+        type: 'text/html;charset=utf-8'
+    });
+
+    // Use the Save As dialog when supported
+    if ('showSaveFilePicker' in window) {
+        try {
+            const handle = await window.showSaveFilePicker({
+                suggestedName: 'ICT_in_Action_Video_Plan.html',
+                types: [{
+                    description: 'HTML document',
+                    accept: {
+                        'text/html': ['.html']
+                    }
+                }]
+            });
+
+            const writable = await handle.createWritable();
+            await writable.write(blob);
+            await writable.close();
+            return;
+        } catch (error) {
+            if (error.name === 'AbortError') return;
+            console.error('Could not save the file:', error);
+            alert('The file could not be saved. Please try again.');
+            return;
+        }
+    }
+
+    // Fallback for browsers without the Save As API
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+
+    link.href = url;
+    link.download = 'ICT_in_Action_Video_Plan.html';
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    setTimeout(() => URL.revokeObjectURL(url), 30000);
 }
 </script>
 </body>
